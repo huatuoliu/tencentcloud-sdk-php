@@ -20,9 +20,9 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeEdgeClusterUpgradeInfo返回参数结构体
  *
- * @method string getComponentVersion() 获取可升级的集群组件和
+ * @method string getComponentVersion() 获取可升级的集群组件及其版本
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setComponentVersion(string $ComponentVersion) 设置可升级的集群组件和
+ * @method void setComponentVersion(string $ComponentVersion) 设置可升级的集群组件及其版本
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getEdgeVersionCurrent() 获取边缘集群当前版本
 注意：此字段可能返回 null，表示取不到有效值。
@@ -40,13 +40,13 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setClusterUpgradeStatusReason(string $ClusterUpgradeStatusReason) 设置集群升级中状态或者失败原因
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
- * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+ * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+ * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
 class DescribeEdgeClusterUpgradeInfoResponse extends AbstractModel
 {
     /**
-     * @var string 可升级的集群组件和
+     * @var string 可升级的集群组件及其版本
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $ComponentVersion;
@@ -76,12 +76,12 @@ class DescribeEdgeClusterUpgradeInfoResponse extends AbstractModel
     public $ClusterUpgradeStatusReason;
 
     /**
-     * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
     /**
-     * @param string $ComponentVersion 可升级的集群组件和
+     * @param string $ComponentVersion 可升级的集群组件及其版本
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $EdgeVersionCurrent 边缘集群当前版本
 注意：此字段可能返回 null，表示取不到有效值。
@@ -91,7 +91,7 @@ class DescribeEdgeClusterUpgradeInfoResponse extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ClusterUpgradeStatusReason 集群升级中状态或者失败原因
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
     {

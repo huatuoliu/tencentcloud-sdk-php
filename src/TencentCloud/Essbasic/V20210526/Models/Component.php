@@ -21,7 +21,7 @@ use TencentCloud\Common\AbstractModel;
  * 此结构体 (Component) 用于描述控件属性。
 
 在通过文件发起合同时，对应的component有三种定位方式
-1. 绝对定位方式
+1. 绝对定位方式 （可以通过 [PDF坐标计算助手](https://qian.tencent.com/developers/tools/template-editor)计算控件的坐标）
 2. 表单域(FIELD)定位方式
 3. 关键字(KEYWORD)定位方式，使用关键字定位时，请确保PDF原始文件内是关键字以文字形式保存在PDF文件中，不支持对图片内文字进行关键字查找
 可以参考官网说明
@@ -37,8 +37,6 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 
 - 如传入的关键字<font color="red">"^甲方签署^"</font >，则会在PDF文件中有且仅有"甲方签署"关键字的地方（<font color="red">前后不能有其他字符</font >）进行对应操作。
 - 如传入的关键字为<font color="red">"甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前后可以有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"^甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前面不能有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"甲方签署^</font >"，则PDF文件中每个出现关键字的位置（<font color="red">后面不能有其他字符</font >）都会执行相应操作。
 
 
 注：`控件ID可以在一个PDF中不可重复`
@@ -54,8 +52,6 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 
 - 如传入的关键字<font color="red">"^甲方签署^"</font >，则会在PDF文件中有且仅有"甲方签署"关键字的地方（<font color="red">前后不能有其他字符</font >）进行对应操作。
 - 如传入的关键字为<font color="red">"甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前后可以有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"^甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前面不能有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"甲方签署^</font >"，则PDF文件中每个出现关键字的位置（<font color="red">后面不能有其他字符</font >）都会执行相应操作。
 
 
 注：`控件ID可以在一个PDF中不可重复`
@@ -79,15 +75,13 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 <ul><li> <b>SIGN_SEAL</b> : 签署印章控件；</li>
 <li> <b>SIGN_DATE</b> : 签署日期控件；</li>
 <li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li>
 <li> <b>SIGN_PAGING_SEAL</b> : 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight</li>
 <li> <b>SIGN_OPINION</b> : 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认；</li>
 <li> <b>SIGN_LEGAL_PERSON_SEAL</b> : 企业法定代表人控件。</li></ul>
 
 * 个人方
 <ul><li> <b>SIGN_DATE</b> : 签署日期控件；</li>
-<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li></ul>
+<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li></ul>
  
 注：` 表单域的控件不能作为印章和签名控件`
  * @method void setComponentType(string $ComponentType) 设置**如果是Component填写控件类型，则可选的字段为**：
@@ -108,15 +102,13 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 <ul><li> <b>SIGN_SEAL</b> : 签署印章控件；</li>
 <li> <b>SIGN_DATE</b> : 签署日期控件；</li>
 <li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li>
 <li> <b>SIGN_PAGING_SEAL</b> : 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight</li>
 <li> <b>SIGN_OPINION</b> : 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认；</li>
 <li> <b>SIGN_LEGAL_PERSON_SEAL</b> : 企业法定代表人控件。</li></ul>
 
 * 个人方
 <ul><li> <b>SIGN_DATE</b> : 签署日期控件；</li>
-<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li></ul>
+<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li></ul>
  
 注：` 表单域的控件不能作为印章和签名控件`
  * @method string getComponentName() 获取**在绝对定位方式方式下**，ComponentName为控件名，长度不能超过20，只能由中文、字母、数字和下划线组成，可以在后续的操作中使用该名称来引用控件。
@@ -184,12 +176,18 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 <li> <b>FontColor</b>：字符串类型，格式为RGB颜色数字</li></ul>
 <b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
 
+<font color="red">ComponentType为DATE时</font>，支持以下参数：
+<ul><li> <b>Font</b>：目前只支持黑体、宋体</li>
+<li> <b>FontSize</b>： 范围12 :72</li></ul>
+<b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
+
 <font color="red">ComponentType为FILL_IMAGE时</font>，支持以下参数：
 <ul><li> <b>NotMakeImageCenter</b>：bool。是否设置图片居中。false：居中（默认）。 true : 不居中</li>
 <li> <b>FillMethod</b> : int. 填充方式。0-铺满（默认）；1-等比例缩放</li></ul>
 
 <font color="red">ComponentType为SIGN_SIGNATURE类型时</font>，可以**ComponentTypeLimit**参数控制签署方式
-<ul><li> <b>HANDWRITE</b> : 手写签名</li>
+<ul><li> <b>HANDWRITE</b> : 需要实时手写的手写签名</li>
+<li> <b>HANDWRITTEN_ESIGN</b> : 长效手写签名， 是使用保存到个人中心的印章列表的手写签名(并且包含HANDWRITE)</li>
 <li> <b>OCR_ESIGN</b> : AI智能识别手写签名</li>
 <li> <b>ESIGN</b> : 个人印章类型</li>
 <li> <b>SYSTEM_ESIGN</b> : 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）</li>
@@ -230,12 +228,18 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 <li> <b>FontColor</b>：字符串类型，格式为RGB颜色数字</li></ul>
 <b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
 
+<font color="red">ComponentType为DATE时</font>，支持以下参数：
+<ul><li> <b>Font</b>：目前只支持黑体、宋体</li>
+<li> <b>FontSize</b>： 范围12 :72</li></ul>
+<b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
+
 <font color="red">ComponentType为FILL_IMAGE时</font>，支持以下参数：
 <ul><li> <b>NotMakeImageCenter</b>：bool。是否设置图片居中。false：居中（默认）。 true : 不居中</li>
 <li> <b>FillMethod</b> : int. 填充方式。0-铺满（默认）；1-等比例缩放</li></ul>
 
 <font color="red">ComponentType为SIGN_SIGNATURE类型时</font>，可以**ComponentTypeLimit**参数控制签署方式
-<ul><li> <b>HANDWRITE</b> : 手写签名</li>
+<ul><li> <b>HANDWRITE</b> : 需要实时手写的手写签名</li>
+<li> <b>HANDWRITTEN_ESIGN</b> : 长效手写签名， 是使用保存到个人中心的印章列表的手写签名(并且包含HANDWRITE)</li>
 <li> <b>OCR_ESIGN</b> : AI智能识别手写签名</li>
 <li> <b>ESIGN</b> : 个人印章类型</li>
 <li> <b>SYSTEM_ESIGN</b> : 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）</li>
@@ -275,8 +279,8 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 <li> <b>SELECTOR</b> : 选项值</li>
 <li> <b>DYNAMIC_TABLE</b>  - 传入json格式的表格内容，详见说明：[数据表格](https://qian.tencent.com/developers/company/dynamic_table)</li>
 <li> <b>DATE</b> : 默认是格式化为xxxx年xx月xx日</li>
-<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取</li>
-<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取</li></ul>
+<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li>
+<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li></ul>
 
 
 <b>控件值约束说明</b>：
@@ -290,8 +294,8 @@ https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.
 <li> <b>SELECTOR</b> : 选项值</li>
 <li> <b>DYNAMIC_TABLE</b>  - 传入json格式的表格内容，详见说明：[数据表格](https://qian.tencent.com/developers/company/dynamic_table)</li>
 <li> <b>DATE</b> : 默认是格式化为xxxx年xx月xx日</li>
-<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取</li>
-<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取</li></ul>
+<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li>
+<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li></ul>
 
 
 <b>控件值约束说明</b>：
@@ -381,8 +385,6 @@ class Component extends AbstractModel
 
 - 如传入的关键字<font color="red">"^甲方签署^"</font >，则会在PDF文件中有且仅有"甲方签署"关键字的地方（<font color="red">前后不能有其他字符</font >）进行对应操作。
 - 如传入的关键字为<font color="red">"甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前后可以有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"^甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前面不能有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"甲方签署^</font >"，则PDF文件中每个出现关键字的位置（<font color="red">后面不能有其他字符</font >）都会执行相应操作。
 
 
 注：`控件ID可以在一个PDF中不可重复`
@@ -410,15 +412,13 @@ class Component extends AbstractModel
 <ul><li> <b>SIGN_SEAL</b> : 签署印章控件；</li>
 <li> <b>SIGN_DATE</b> : 签署日期控件；</li>
 <li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li>
 <li> <b>SIGN_PAGING_SEAL</b> : 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight</li>
 <li> <b>SIGN_OPINION</b> : 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认；</li>
 <li> <b>SIGN_LEGAL_PERSON_SEAL</b> : 企业法定代表人控件。</li></ul>
 
 * 个人方
 <ul><li> <b>SIGN_DATE</b> : 签署日期控件；</li>
-<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li></ul>
+<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li></ul>
  
 注：` 表单域的控件不能作为印章和签名控件`
      */
@@ -502,12 +502,18 @@ class Component extends AbstractModel
 <li> <b>FontColor</b>：字符串类型，格式为RGB颜色数字</li></ul>
 <b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
 
+<font color="red">ComponentType为DATE时</font>，支持以下参数：
+<ul><li> <b>Font</b>：目前只支持黑体、宋体</li>
+<li> <b>FontSize</b>： 范围12 :72</li></ul>
+<b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
+
 <font color="red">ComponentType为FILL_IMAGE时</font>，支持以下参数：
 <ul><li> <b>NotMakeImageCenter</b>：bool。是否设置图片居中。false：居中（默认）。 true : 不居中</li>
 <li> <b>FillMethod</b> : int. 填充方式。0-铺满（默认）；1-等比例缩放</li></ul>
 
 <font color="red">ComponentType为SIGN_SIGNATURE类型时</font>，可以**ComponentTypeLimit**参数控制签署方式
-<ul><li> <b>HANDWRITE</b> : 手写签名</li>
+<ul><li> <b>HANDWRITE</b> : 需要实时手写的手写签名</li>
+<li> <b>HANDWRITTEN_ESIGN</b> : 长效手写签名， 是使用保存到个人中心的印章列表的手写签名(并且包含HANDWRITE)</li>
 <li> <b>OCR_ESIGN</b> : AI智能识别手写签名</li>
 <li> <b>ESIGN</b> : 个人印章类型</li>
 <li> <b>SYSTEM_ESIGN</b> : 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）</li>
@@ -551,8 +557,8 @@ class Component extends AbstractModel
 <li> <b>SELECTOR</b> : 选项值</li>
 <li> <b>DYNAMIC_TABLE</b>  - 传入json格式的表格内容，详见说明：[数据表格](https://qian.tencent.com/developers/company/dynamic_table)</li>
 <li> <b>DATE</b> : 默认是格式化为xxxx年xx月xx日</li>
-<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取</li>
-<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取</li></ul>
+<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li>
+<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li></ul>
 
 
 <b>控件值约束说明</b>：
@@ -659,8 +665,6 @@ class Component extends AbstractModel
 
 - 如传入的关键字<font color="red">"^甲方签署^"</font >，则会在PDF文件中有且仅有"甲方签署"关键字的地方（<font color="red">前后不能有其他字符</font >）进行对应操作。
 - 如传入的关键字为<font color="red">"甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前后可以有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"^甲方签署</font >"，则PDF文件中每个出现关键字的位置（<font color="red">前面不能有其他字符</font >）都会执行相应操作。
-- 如传入的关键字为<font color="red">"甲方签署^</font >"，则PDF文件中每个出现关键字的位置（<font color="red">后面不能有其他字符</font >）都会执行相应操作。
 
 
 注：`控件ID可以在一个PDF中不可重复`
@@ -684,15 +688,13 @@ class Component extends AbstractModel
 <ul><li> <b>SIGN_SEAL</b> : 签署印章控件；</li>
 <li> <b>SIGN_DATE</b> : 签署日期控件；</li>
 <li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li>
 <li> <b>SIGN_PAGING_SEAL</b> : 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight</li>
 <li> <b>SIGN_OPINION</b> : 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认；</li>
 <li> <b>SIGN_LEGAL_PERSON_SEAL</b> : 企业法定代表人控件。</li></ul>
 
 * 个人方
 <ul><li> <b>SIGN_DATE</b> : 签署日期控件；</li>
-<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li>
-<li> <b>SIGN_PERSONAL_SEAL</b> : 个人签署印章控件（使用文件发起暂不支持此类型）；</li></ul>
+<li> <b>SIGN_SIGNATURE</b> : 用户签名控件；</li></ul>
  
 注：` 表单域的控件不能作为印章和签名控件`
      * @param string $ComponentName **在绝对定位方式方式下**，ComponentName为控件名，长度不能超过20，只能由中文、字母、数字和下划线组成，可以在后续的操作中使用该名称来引用控件。
@@ -732,12 +734,18 @@ class Component extends AbstractModel
 <li> <b>FontColor</b>：字符串类型，格式为RGB颜色数字</li></ul>
 <b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
 
+<font color="red">ComponentType为DATE时</font>，支持以下参数：
+<ul><li> <b>Font</b>：目前只支持黑体、宋体</li>
+<li> <b>FontSize</b>： 范围12 :72</li></ul>
+<b>参数样例</b>：`{"FontColor":"255,0,0","FontSize":12}`
+
 <font color="red">ComponentType为FILL_IMAGE时</font>，支持以下参数：
 <ul><li> <b>NotMakeImageCenter</b>：bool。是否设置图片居中。false：居中（默认）。 true : 不居中</li>
 <li> <b>FillMethod</b> : int. 填充方式。0-铺满（默认）；1-等比例缩放</li></ul>
 
 <font color="red">ComponentType为SIGN_SIGNATURE类型时</font>，可以**ComponentTypeLimit**参数控制签署方式
-<ul><li> <b>HANDWRITE</b> : 手写签名</li>
+<ul><li> <b>HANDWRITE</b> : 需要实时手写的手写签名</li>
+<li> <b>HANDWRITTEN_ESIGN</b> : 长效手写签名， 是使用保存到个人中心的印章列表的手写签名(并且包含HANDWRITE)</li>
 <li> <b>OCR_ESIGN</b> : AI智能识别手写签名</li>
 <li> <b>ESIGN</b> : 个人印章类型</li>
 <li> <b>SYSTEM_ESIGN</b> : 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）</li>
@@ -777,8 +785,8 @@ class Component extends AbstractModel
 <li> <b>SELECTOR</b> : 选项值</li>
 <li> <b>DYNAMIC_TABLE</b>  - 传入json格式的表格内容，详见说明：[数据表格](https://qian.tencent.com/developers/company/dynamic_table)</li>
 <li> <b>DATE</b> : 默认是格式化为xxxx年xx月xx日</li>
-<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取</li>
-<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取</li></ul>
+<li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li>
+<li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li></ul>
 
 
 <b>控件值约束说明</b>：

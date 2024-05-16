@@ -32,9 +32,8 @@ use TencentCloud\Common\AbstractModel;
 通用场景引擎：
 **注意：除电话通讯场景以外的其它识别场景，请务必使用以下16k引擎**
 • **16k_zh：**中文普通话通用引擎，支持中文普通话和少量英语，使用丰富的中文普通话语料训练，覆盖场景广泛，适用于除电话通讯外的所有中文普通话识别场景；
-• **16k_zh_large：**中文普通话通用引擎【大模型版】。模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与大模型版本的识别效果；
+• **16k_zh_large：**普方英大模型引擎【大模型版】。当前模型同时支持中文、英文、[多种中文方言](https://cloud.tencent.com/document/product/1093/35682)等语言的识别，模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与普方英大模型版本的识别效果；
 • **16k_zh_dialect：**中文普通话+多方言混合引擎，除普通话外支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
-• **16k_dialect_large：**中文普通话+多方言混合引擎【大模型版】，针对低质量音频、中文普通话的识别准确率极大提升，适合普通话为主、方言识别为辅的应用场景，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比方言混合引擎常规版本与大模型版本的识别效果；
 • **16k_en：**英语；
 • **16k_yue：**粤语；
 • **16k_zh-PY：**中英粤混合引擎，使用一个引擎同时识别中文普通话、英语、粤语三个语言;
@@ -52,6 +51,7 @@ use TencentCloud\Common\AbstractModel;
 • **16k_hi：**印地语；
 • **16k_fr：**法语；
 • **16k_zh_medical：**中文医疗引擎；
+• **16k_de：**德语；
  * @method void setEngineModelType(string $EngineModelType) 设置引擎模型类型
 识别引擎采用分级计费方案，标记为“大模型版”的引擎适用大模型计费方案，[点击这里](https://cloud.tencent.com/document/product/1093/35686) 查看产品计费说明
 
@@ -64,9 +64,8 @@ use TencentCloud\Common\AbstractModel;
 通用场景引擎：
 **注意：除电话通讯场景以外的其它识别场景，请务必使用以下16k引擎**
 • **16k_zh：**中文普通话通用引擎，支持中文普通话和少量英语，使用丰富的中文普通话语料训练，覆盖场景广泛，适用于除电话通讯外的所有中文普通话识别场景；
-• **16k_zh_large：**中文普通话通用引擎【大模型版】。模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与大模型版本的识别效果；
+• **16k_zh_large：**普方英大模型引擎【大模型版】。当前模型同时支持中文、英文、[多种中文方言](https://cloud.tencent.com/document/product/1093/35682)等语言的识别，模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与普方英大模型版本的识别效果；
 • **16k_zh_dialect：**中文普通话+多方言混合引擎，除普通话外支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
-• **16k_dialect_large：**中文普通话+多方言混合引擎【大模型版】，针对低质量音频、中文普通话的识别准确率极大提升，适合普通话为主、方言识别为辅的应用场景，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比方言混合引擎常规版本与大模型版本的识别效果；
 • **16k_en：**英语；
 • **16k_yue：**粤语；
 • **16k_zh-PY：**中英粤混合引擎，使用一个引擎同时识别中文普通话、英语、粤语三个语言;
@@ -84,6 +83,7 @@ use TencentCloud\Common\AbstractModel;
 • **16k_hi：**印地语；
 • **16k_fr：**法语；
 • **16k_zh_medical：**中文医疗引擎；
+• **16k_de：**德语；
  * @method integer getChannelNum() 获取识别声道数
 1：单声道（16k音频仅支持单声道，**请勿**设置为双声道）；
 2：双声道（仅支持8k电话音频，且双声道应分别为通话双方）
@@ -162,14 +162,14 @@ use TencentCloud\Common\AbstractModel;
 如果用户使用轮询方式获取识别结果，则无需提交该参数
  * @method integer getSpeakerDiarization() 获取是否开启说话人分离
 0：不开启；
-1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_dialect_large，且ChannelNum=1时可用）；
+1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_zh_dialect，且ChannelNum=1时可用）；
 默认值为 0
 
 注意：
 8k双声道电话音频请按 **ChannelNum 识别声道数** 的参数描述使用默认值
  * @method void setSpeakerDiarization(integer $SpeakerDiarization) 设置是否开启说话人分离
 0：不开启；
-1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_dialect_large，且ChannelNum=1时可用）；
+1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_zh_dialect，且ChannelNum=1时可用）；
 默认值为 0
 
 注意：
@@ -238,53 +238,53 @@ use TencentCloud\Common\AbstractModel;
 0：不开启；
 1：开启；
 默认值为0
- * @method integer getConvertNumMode() 获取阿拉伯数字智能转换（目前仅支持8k_zh/16k_zh引擎）
+ * @method integer getConvertNumMode() 获取阿拉伯数字智能转换（目前支持中文普通话引擎）
 0：不转换，直接输出中文数字；
 1：根据场景智能转换为阿拉伯数字；
 3：打开数学相关数字转换（如：阿尔法转写为α）；
 默认值为 1
- * @method void setConvertNumMode(integer $ConvertNumMode) 设置阿拉伯数字智能转换（目前仅支持8k_zh/16k_zh引擎）
+ * @method void setConvertNumMode(integer $ConvertNumMode) 设置阿拉伯数字智能转换（目前支持中文普通话引擎）
 0：不转换，直接输出中文数字；
 1：根据场景智能转换为阿拉伯数字；
 3：打开数学相关数字转换（如：阿尔法转写为α）；
 默认值为 1
- * @method integer getFilterDirty() 获取脏词过滤（目前仅支持8k_zh/16k_zh引擎）
+ * @method integer getFilterDirty() 获取脏词过滤（目前支持中文普通话引擎）
 0：不过滤脏词；
 1：过滤脏词；
 2：将脏词替换为 * ；
 默认值为 0
- * @method void setFilterDirty(integer $FilterDirty) 设置脏词过滤（目前仅支持8k_zh/16k_zh引擎）
+ * @method void setFilterDirty(integer $FilterDirty) 设置脏词过滤（目前支持中文普通话引擎）
 0：不过滤脏词；
 1：过滤脏词；
 2：将脏词替换为 * ；
 默认值为 0
- * @method integer getFilterPunc() 获取标点符号过滤（目前仅支持8k_zh/16k_zh引擎）
+ * @method integer getFilterPunc() 获取标点符号过滤（目前支持中文普通话引擎）
 0：不过滤标点；
 1：过滤句末标点；
 2：过滤所有标点；
 默认值为 0
- * @method void setFilterPunc(integer $FilterPunc) 设置标点符号过滤（目前仅支持8k_zh/16k_zh引擎）
+ * @method void setFilterPunc(integer $FilterPunc) 设置标点符号过滤（目前支持中文普通话引擎）
 0：不过滤标点；
 1：过滤句末标点；
 2：过滤所有标点；
 默认值为 0
- * @method integer getFilterModal() 获取语气词过滤（目前仅支持8k_zh/16k_zh引擎）
+ * @method integer getFilterModal() 获取语气词过滤（目前支持中文普通话引擎）
 0：不过滤语气词；
 1：过滤部分语气词；
 2：严格过滤语气词；
 默认值为 0
- * @method void setFilterModal(integer $FilterModal) 设置语气词过滤（目前仅支持8k_zh/16k_zh引擎）
+ * @method void setFilterModal(integer $FilterModal) 设置语气词过滤（目前支持中文普通话引擎）
 0：不过滤语气词；
 1：过滤部分语气词；
 2：严格过滤语气词；
 默认值为 0
- * @method integer getSentenceMaxLength() 获取单标点最多字数（目前仅支持8k_zh/16k_zh引擎）
+ * @method integer getSentenceMaxLength() 获取单标点最多字数（目前支持中文普通话引擎）
 **可控制单行字幕最大字数，适用于字幕生成场景**，取值范围：[6，40]
 0：不开启该功能；
 默认值为0
 
 注意：需设置ResTextFormat为3，解析返回的ResultDetail列表，通过结构中FinalSentence获取单个标点断句结果
- * @method void setSentenceMaxLength(integer $SentenceMaxLength) 设置单标点最多字数（目前仅支持8k_zh/16k_zh引擎）
+ * @method void setSentenceMaxLength(integer $SentenceMaxLength) 设置单标点最多字数（目前支持中文普通话引擎）
 **可控制单行字幕最大字数，适用于字幕生成场景**，取值范围：[6，40]
 0：不开启该功能；
 默认值为0
@@ -308,9 +308,8 @@ class CreateRecTaskRequest extends AbstractModel
 通用场景引擎：
 **注意：除电话通讯场景以外的其它识别场景，请务必使用以下16k引擎**
 • **16k_zh：**中文普通话通用引擎，支持中文普通话和少量英语，使用丰富的中文普通话语料训练，覆盖场景广泛，适用于除电话通讯外的所有中文普通话识别场景；
-• **16k_zh_large：**中文普通话通用引擎【大模型版】。模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与大模型版本的识别效果；
+• **16k_zh_large：**普方英大模型引擎【大模型版】。当前模型同时支持中文、英文、[多种中文方言](https://cloud.tencent.com/document/product/1093/35682)等语言的识别，模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与普方英大模型版本的识别效果；
 • **16k_zh_dialect：**中文普通话+多方言混合引擎，除普通话外支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
-• **16k_dialect_large：**中文普通话+多方言混合引擎【大模型版】，针对低质量音频、中文普通话的识别准确率极大提升，适合普通话为主、方言识别为辅的应用场景，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比方言混合引擎常规版本与大模型版本的识别效果；
 • **16k_en：**英语；
 • **16k_yue：**粤语；
 • **16k_zh-PY：**中英粤混合引擎，使用一个引擎同时识别中文普通话、英语、粤语三个语言;
@@ -328,6 +327,7 @@ class CreateRecTaskRequest extends AbstractModel
 • **16k_hi：**印地语；
 • **16k_fr：**法语；
 • **16k_zh_medical：**中文医疗引擎；
+• **16k_de：**德语；
      */
     public $EngineModelType;
 
@@ -400,7 +400,7 @@ class CreateRecTaskRequest extends AbstractModel
     /**
      * @var integer 是否开启说话人分离
 0：不开启；
-1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_dialect_large，且ChannelNum=1时可用）；
+1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_zh_dialect，且ChannelNum=1时可用）；
 默认值为 0
 
 注意：
@@ -430,6 +430,7 @@ class CreateRecTaskRequest extends AbstractModel
 1：开启热词增强功能
 
 注意：热词增强功能开启后，将对传入的热词表id开启同音替换功能，可以在这里查看[热词表配置方法](https://cloud.tencent.com/document/product/1093/40996)。效果举例：在热词表中配置“蜜制”一词，并开启增强功能，与“蜜制”（mìzhì）同音同调的“秘制”（mìzhì）的识别结果会被强制替换成“蜜制”。**建议客户根据实际的业务需求开启该功能**
+     * @deprecated
      */
     public $ReinforceHotword;
 
@@ -465,7 +466,7 @@ class CreateRecTaskRequest extends AbstractModel
     public $EmotionalEnergy;
 
     /**
-     * @var integer 阿拉伯数字智能转换（目前仅支持8k_zh/16k_zh引擎）
+     * @var integer 阿拉伯数字智能转换（目前支持中文普通话引擎）
 0：不转换，直接输出中文数字；
 1：根据场景智能转换为阿拉伯数字；
 3：打开数学相关数字转换（如：阿尔法转写为α）；
@@ -474,7 +475,7 @@ class CreateRecTaskRequest extends AbstractModel
     public $ConvertNumMode;
 
     /**
-     * @var integer 脏词过滤（目前仅支持8k_zh/16k_zh引擎）
+     * @var integer 脏词过滤（目前支持中文普通话引擎）
 0：不过滤脏词；
 1：过滤脏词；
 2：将脏词替换为 * ；
@@ -483,7 +484,7 @@ class CreateRecTaskRequest extends AbstractModel
     public $FilterDirty;
 
     /**
-     * @var integer 标点符号过滤（目前仅支持8k_zh/16k_zh引擎）
+     * @var integer 标点符号过滤（目前支持中文普通话引擎）
 0：不过滤标点；
 1：过滤句末标点；
 2：过滤所有标点；
@@ -492,7 +493,7 @@ class CreateRecTaskRequest extends AbstractModel
     public $FilterPunc;
 
     /**
-     * @var integer 语气词过滤（目前仅支持8k_zh/16k_zh引擎）
+     * @var integer 语气词过滤（目前支持中文普通话引擎）
 0：不过滤语气词；
 1：过滤部分语气词；
 2：严格过滤语气词；
@@ -501,7 +502,7 @@ class CreateRecTaskRequest extends AbstractModel
     public $FilterModal;
 
     /**
-     * @var integer 单标点最多字数（目前仅支持8k_zh/16k_zh引擎）
+     * @var integer 单标点最多字数（目前支持中文普通话引擎）
 **可控制单行字幕最大字数，适用于字幕生成场景**，取值范围：[6，40]
 0：不开启该功能；
 默认值为0
@@ -528,9 +529,8 @@ class CreateRecTaskRequest extends AbstractModel
 通用场景引擎：
 **注意：除电话通讯场景以外的其它识别场景，请务必使用以下16k引擎**
 • **16k_zh：**中文普通话通用引擎，支持中文普通话和少量英语，使用丰富的中文普通话语料训练，覆盖场景广泛，适用于除电话通讯外的所有中文普通话识别场景；
-• **16k_zh_large：**中文普通话通用引擎【大模型版】。模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与大模型版本的识别效果；
+• **16k_zh_large：**普方英大模型引擎【大模型版】。当前模型同时支持中文、英文、[多种中文方言](https://cloud.tencent.com/document/product/1093/35682)等语言的识别，模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远、等低质量音频的识别准确率极大提升，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比中文普通话常规版本与普方英大模型版本的识别效果；
 • **16k_zh_dialect：**中文普通话+多方言混合引擎，除普通话外支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
-• **16k_dialect_large：**中文普通话+多方言混合引擎【大模型版】，针对低质量音频、中文普通话的识别准确率极大提升，适合普通话为主、方言识别为辅的应用场景，[点击这里](https://console.cloud.tencent.com/asr/demonstrate) 对比方言混合引擎常规版本与大模型版本的识别效果；
 • **16k_en：**英语；
 • **16k_yue：**粤语；
 • **16k_zh-PY：**中英粤混合引擎，使用一个引擎同时识别中文普通话、英语、粤语三个语言;
@@ -548,6 +548,7 @@ class CreateRecTaskRequest extends AbstractModel
 • **16k_hi：**印地语；
 • **16k_fr：**法语；
 • **16k_zh_medical：**中文医疗引擎；
+• **16k_de：**德语；
      * @param integer $ChannelNum 识别声道数
 1：单声道（16k音频仅支持单声道，**请勿**设置为双声道）；
 2：双声道（仅支持8k电话音频，且双声道应分别为通话双方）
@@ -588,7 +589,7 @@ class CreateRecTaskRequest extends AbstractModel
 如果用户使用轮询方式获取识别结果，则无需提交该参数
      * @param integer $SpeakerDiarization 是否开启说话人分离
 0：不开启；
-1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_dialect_large，且ChannelNum=1时可用）；
+1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_zh_dialect，且ChannelNum=1时可用）；
 默认值为 0
 
 注意：
@@ -625,27 +626,27 @@ class CreateRecTaskRequest extends AbstractModel
 0：不开启；
 1：开启；
 默认值为0
-     * @param integer $ConvertNumMode 阿拉伯数字智能转换（目前仅支持8k_zh/16k_zh引擎）
+     * @param integer $ConvertNumMode 阿拉伯数字智能转换（目前支持中文普通话引擎）
 0：不转换，直接输出中文数字；
 1：根据场景智能转换为阿拉伯数字；
 3：打开数学相关数字转换（如：阿尔法转写为α）；
 默认值为 1
-     * @param integer $FilterDirty 脏词过滤（目前仅支持8k_zh/16k_zh引擎）
+     * @param integer $FilterDirty 脏词过滤（目前支持中文普通话引擎）
 0：不过滤脏词；
 1：过滤脏词；
 2：将脏词替换为 * ；
 默认值为 0
-     * @param integer $FilterPunc 标点符号过滤（目前仅支持8k_zh/16k_zh引擎）
+     * @param integer $FilterPunc 标点符号过滤（目前支持中文普通话引擎）
 0：不过滤标点；
 1：过滤句末标点；
 2：过滤所有标点；
 默认值为 0
-     * @param integer $FilterModal 语气词过滤（目前仅支持8k_zh/16k_zh引擎）
+     * @param integer $FilterModal 语气词过滤（目前支持中文普通话引擎）
 0：不过滤语气词；
 1：过滤部分语气词；
 2：严格过滤语气词；
 默认值为 0
-     * @param integer $SentenceMaxLength 单标点最多字数（目前仅支持8k_zh/16k_zh引擎）
+     * @param integer $SentenceMaxLength 单标点最多字数（目前支持中文普通话引擎）
 **可控制单行字幕最大字数，适用于字幕生成场景**，取值范围：[6，40]
 0：不开启该功能；
 默认值为0

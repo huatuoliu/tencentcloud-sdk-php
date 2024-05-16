@@ -25,19 +25,15 @@ use TencentCloud\Common\AbstractModel;
 此接口下面信息必填。
 <ul>
 <li>渠道应用标识:  Agent.AppId</li>
-<li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-<li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
 </ul>
-第三方平台子客企业和员工必须已经经过实名认证
+第三方平台子客企业必须已经经过实名认证
  * @method void setAgent(Agent $Agent) 设置关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
 
 此接口下面信息必填。
 <ul>
 <li>渠道应用标识:  Agent.AppId</li>
-<li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-<li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
 </ul>
-第三方平台子客企业和员工必须已经经过实名认证
+第三方平台子客企业必须已经经过实名认证
  * @method string getStartTime() 获取查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
  * @method void setStartTime(string $StartTime) 设置查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
  * @method string getEndTime() 获取查询结束时间字符串，格式为yyyymmdd,时间跨度不能大于31天
@@ -59,7 +55,6 @@ use TencentCloud\Common\AbstractModel;
 <li>**OrgEssAuth**: 签署企业实名</li>
 <li>**FlowNotify**: 短信通知</li>
 <li>**AuthService**: 企业工商信息查询</li>
-<li>**NoAuthSign**: 形式签</li>
 </ul>
  * @method void setQuotaType(string $QuotaType) 设置查询的套餐类型 （选填 ）不传则查询所有套餐；
 目前支持:
@@ -78,7 +73,6 @@ use TencentCloud\Common\AbstractModel;
 <li>**OrgEssAuth**: 签署企业实名</li>
 <li>**FlowNotify**: 短信通知</li>
 <li>**AuthService**: 企业工商信息查询</li>
-<li>**NoAuthSign**: 形式签</li>
 </ul>
  * @method integer getOffset() 获取指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
  * @method void setOffset(integer $Offset) 设置指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
@@ -93,10 +87,8 @@ class ChannelDescribeBillUsageDetailRequest extends AbstractModel
 此接口下面信息必填。
 <ul>
 <li>渠道应用标识:  Agent.AppId</li>
-<li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-<li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
 </ul>
-第三方平台子客企业和员工必须已经经过实名认证
+第三方平台子客企业必须已经经过实名认证
      */
     public $Agent;
 
@@ -128,7 +120,6 @@ class ChannelDescribeBillUsageDetailRequest extends AbstractModel
 <li>**OrgEssAuth**: 签署企业实名</li>
 <li>**FlowNotify**: 短信通知</li>
 <li>**AuthService**: 企业工商信息查询</li>
-<li>**NoAuthSign**: 形式签</li>
 </ul>
      */
     public $QuotaType;
@@ -149,10 +140,8 @@ class ChannelDescribeBillUsageDetailRequest extends AbstractModel
 此接口下面信息必填。
 <ul>
 <li>渠道应用标识:  Agent.AppId</li>
-<li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-<li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
 </ul>
-第三方平台子客企业和员工必须已经经过实名认证
+第三方平台子客企业必须已经经过实名认证
      * @param string $StartTime 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
      * @param string $EndTime 查询结束时间字符串，格式为yyyymmdd,时间跨度不能大于31天
      * @param string $QuotaType 查询的套餐类型 （选填 ）不传则查询所有套餐；
@@ -172,7 +161,6 @@ class ChannelDescribeBillUsageDetailRequest extends AbstractModel
 <li>**OrgEssAuth**: 签署企业实名</li>
 <li>**FlowNotify**: 短信通知</li>
 <li>**AuthService**: 企业工商信息查询</li>
-<li>**NoAuthSign**: 形式签</li>
 </ul>
      * @param integer $Offset 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
      * @param integer $Limit 指定分页每页返回的数据条数，如果不传默认为 50，单页最大支持 50。

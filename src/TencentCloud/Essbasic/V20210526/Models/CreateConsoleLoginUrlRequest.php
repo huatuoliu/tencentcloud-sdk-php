@@ -60,6 +60,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setProxyOperatorName(string $ProxyOperatorName) 设置子客企业员工的姓名，最大长度50个字符,  员工的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
 
 注：`该姓名需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该姓名会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人名字传入将不会生效`
+ * @method string getProxyOperatorMobile() 获取子客企业员工的手机码,  支持国内手机号11位数字(无需加+86前缀或其他字符)。注：`该手机号需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该手机号会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人手机号传入将不会生效`
+ * @method void setProxyOperatorMobile(string $ProxyOperatorMobile) 设置子客企业员工的手机码,  支持国内手机号11位数字(无需加+86前缀或其他字符)。注：`该手机号需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该手机号会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人手机号传入将不会生效`
  * @method string getModule() 获取Web控制台登录后进入的功能模块,  支持的模块包括：
 <ul>
 <li> **空值** :(默认)企业中心模块</li>
@@ -142,10 +144,12 @@ use TencentCloud\Common\AbstractModel;
 注意：`如果已同步，这里非空会更新同步的经办人身份证号，暂时只支持居民身份证类型`。
  * @method void setProxyOperatorIdCardNumber(string $ProxyOperatorIdCardNumber) 设置子客经办人身份证
 注意：`如果已同步，这里非空会更新同步的经办人身份证号，暂时只支持居民身份证类型`。
- * @method string getAutoJumpUrl() 获取认证完成跳转链接
-注意：`只在H5生效，域名需要联系我们开白`。
- * @method void setAutoJumpUrl(string $AutoJumpUrl) 设置认证完成跳转链接
-注意：`只在H5生效，域名需要联系我们开白`。
+ * @method string getAutoJumpUrl() 获取认证完成跳转链接。
+注意：`目前仅支持 H5 和 PC`。
+ * @method void setAutoJumpUrl(string $AutoJumpUrl) 设置认证完成跳转链接。
+注意：`目前仅支持 H5 和 PC`。
+ * @method string getTopNavigationStatus() 获取是否展示头顶导航栏  <ul><li> **ENABLE** : (默认)进入web控制台展示头顶导航栏</li> <li> **DISABLE** : 进入web控制台不展示头顶导航栏</li></ul> 注：该参数**仅在企业和员工激活完成，登录控制台场景才生效**。
+ * @method void setTopNavigationStatus(string $TopNavigationStatus) 设置是否展示头顶导航栏  <ul><li> **ENABLE** : (默认)进入web控制台展示头顶导航栏</li> <li> **DISABLE** : 进入web控制台不展示头顶导航栏</li></ul> 注：该参数**仅在企业和员工激活完成，登录控制台场景才生效**。
  */
 class CreateConsoleLoginUrlRequest extends AbstractModel
 {
@@ -184,6 +188,11 @@ class CreateConsoleLoginUrlRequest extends AbstractModel
 注：`该姓名需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该姓名会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人名字传入将不会生效`
      */
     public $ProxyOperatorName;
+
+    /**
+     * @var string 子客企业员工的手机码,  支持国内手机号11位数字(无需加+86前缀或其他字符)。注：`该手机号需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该手机号会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人手机号传入将不会生效`
+     */
+    public $ProxyOperatorMobile;
 
     /**
      * @var string Web控制台登录后进入的功能模块,  支持的模块包括：
@@ -260,10 +269,15 @@ class CreateConsoleLoginUrlRequest extends AbstractModel
     public $ProxyOperatorIdCardNumber;
 
     /**
-     * @var string 认证完成跳转链接
-注意：`只在H5生效，域名需要联系我们开白`。
+     * @var string 认证完成跳转链接。
+注意：`目前仅支持 H5 和 PC`。
      */
     public $AutoJumpUrl;
+
+    /**
+     * @var string 是否展示头顶导航栏  <ul><li> **ENABLE** : (默认)进入web控制台展示头顶导航栏</li> <li> **DISABLE** : 进入web控制台不展示头顶导航栏</li></ul> 注：该参数**仅在企业和员工激活完成，登录控制台场景才生效**。
+     */
+    public $TopNavigationStatus;
 
     /**
      * @param Agent $Agent 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容
@@ -286,6 +300,7 @@ class CreateConsoleLoginUrlRequest extends AbstractModel
      * @param string $ProxyOperatorName 子客企业员工的姓名，最大长度50个字符,  员工的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
 
 注：`该姓名需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该姓名会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人名字传入将不会生效`
+     * @param string $ProxyOperatorMobile 子客企业员工的手机码,  支持国内手机号11位数字(无需加+86前缀或其他字符)。注：`该手机号需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该手机号会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人手机号传入将不会生效`
      * @param string $Module Web控制台登录后进入的功能模块,  支持的模块包括：
 <ul>
 <li> **空值** :(默认)企业中心模块</li>
@@ -327,8 +342,9 @@ class CreateConsoleLoginUrlRequest extends AbstractModel
      * @param UserInfo $Operator 暂未开放
      * @param string $ProxyOperatorIdCardNumber 子客经办人身份证
 注意：`如果已同步，这里非空会更新同步的经办人身份证号，暂时只支持居民身份证类型`。
-     * @param string $AutoJumpUrl 认证完成跳转链接
-注意：`只在H5生效，域名需要联系我们开白`。
+     * @param string $AutoJumpUrl 认证完成跳转链接。
+注意：`目前仅支持 H5 和 PC`。
+     * @param string $TopNavigationStatus 是否展示头顶导航栏  <ul><li> **ENABLE** : (默认)进入web控制台展示头顶导航栏</li> <li> **DISABLE** : 进入web控制台不展示头顶导航栏</li></ul> 注：该参数**仅在企业和员工激活完成，登录控制台场景才生效**。
      */
     function __construct()
     {
@@ -358,6 +374,10 @@ class CreateConsoleLoginUrlRequest extends AbstractModel
 
         if (array_key_exists("ProxyOperatorName",$param) and $param["ProxyOperatorName"] !== null) {
             $this->ProxyOperatorName = $param["ProxyOperatorName"];
+        }
+
+        if (array_key_exists("ProxyOperatorMobile",$param) and $param["ProxyOperatorMobile"] !== null) {
+            $this->ProxyOperatorMobile = $param["ProxyOperatorMobile"];
         }
 
         if (array_key_exists("Module",$param) and $param["Module"] !== null) {
@@ -395,6 +415,10 @@ class CreateConsoleLoginUrlRequest extends AbstractModel
 
         if (array_key_exists("AutoJumpUrl",$param) and $param["AutoJumpUrl"] !== null) {
             $this->AutoJumpUrl = $param["AutoJumpUrl"];
+        }
+
+        if (array_key_exists("TopNavigationStatus",$param) and $param["TopNavigationStatus"] !== null) {
+            $this->TopNavigationStatus = $param["TopNavigationStatus"];
         }
     }
 }

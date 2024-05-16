@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method array getMachines() 获取机器状态信息组
  * @method void setMachines(array $Machines) 设置机器状态信息组
- * @method integer getAutoUpdate() 获取机器组是否开启自动升级功能
- * @method void setAutoUpdate(integer $AutoUpdate) 设置机器组是否开启自动升级功能
+ * @method integer getAutoUpdate() 获取机器组是否开启自动升级功能。 0：未开启自动升级；1：开启了自动升级。
+ * @method void setAutoUpdate(integer $AutoUpdate) 设置机器组是否开启自动升级功能。 0：未开启自动升级；1：开启了自动升级。
  * @method string getUpdateStartTime() 获取机器组自动升级功能预设开始时间
  * @method void setUpdateStartTime(string $UpdateStartTime) 设置机器组自动升级功能预设开始时间
  * @method string getUpdateEndTime() 获取机器组自动升级功能预设结束时间
@@ -32,8 +32,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setLatestAgentVersion(string $LatestAgentVersion) 设置当前用户可用最新的Loglistener版本
  * @method boolean getServiceLogging() 获取是否开启服务日志
  * @method void setServiceLogging(boolean $ServiceLogging) 设置是否开启服务日志
- * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
- * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+ * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+ * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
 class DescribeMachinesResponse extends AbstractModel
 {
@@ -43,7 +43,7 @@ class DescribeMachinesResponse extends AbstractModel
     public $Machines;
 
     /**
-     * @var integer 机器组是否开启自动升级功能
+     * @var integer 机器组是否开启自动升级功能。 0：未开启自动升级；1：开启了自动升级。
      */
     public $AutoUpdate;
 
@@ -68,18 +68,18 @@ class DescribeMachinesResponse extends AbstractModel
     public $ServiceLogging;
 
     /**
-     * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
     /**
      * @param array $Machines 机器状态信息组
-     * @param integer $AutoUpdate 机器组是否开启自动升级功能
+     * @param integer $AutoUpdate 机器组是否开启自动升级功能。 0：未开启自动升级；1：开启了自动升级。
      * @param string $UpdateStartTime 机器组自动升级功能预设开始时间
      * @param string $UpdateEndTime 机器组自动升级功能预设结束时间
      * @param string $LatestAgentVersion 当前用户可用最新的Loglistener版本
      * @param boolean $ServiceLogging 是否开启服务日志
-     * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
     {

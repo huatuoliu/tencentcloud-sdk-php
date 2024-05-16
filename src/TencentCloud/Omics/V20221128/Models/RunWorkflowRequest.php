@@ -50,8 +50,12 @@ use TencentCloud\Common\AbstractModel;
 （InputBase64和InputCosUri必选其一）
  * @method void setInputCosUri(string $InputCosUri) 设置任务输入COS地址。
 （InputBase64和InputCosUri必选其一）
- * @method integer getCacheClearDelay() 获取任务缓存清理时间（小时）。不填表示不清理。
- * @method void setCacheClearDelay(integer $CacheClearDelay) 设置任务缓存清理时间（小时）。不填表示不清理。
+ * @method integer getCacheClearDelay() 获取任务缓存清理时间（小时）。不填或0表示不清理。
+ * @method void setCacheClearDelay(integer $CacheClearDelay) 设置任务缓存清理时间（小时）。不填或0表示不清理。
+ * @method string getWorkDir() 获取工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
+ * @method void setWorkDir(string $WorkDir) 设置工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
+ * @method array getVolumeIds() 获取缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
+ * @method void setVolumeIds(array $VolumeIds) 设置缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
  */
 class RunWorkflowRequest extends AbstractModel
 {
@@ -107,9 +111,19 @@ class RunWorkflowRequest extends AbstractModel
     public $InputCosUri;
 
     /**
-     * @var integer 任务缓存清理时间（小时）。不填表示不清理。
+     * @var integer 任务缓存清理时间（小时）。不填或0表示不清理。
      */
     public $CacheClearDelay;
+
+    /**
+     * @var string 工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
+     */
+    public $WorkDir;
+
+    /**
+     * @var array 缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
+     */
+    public $VolumeIds;
 
     /**
      * @param string $Name 任务批次名称。
@@ -127,7 +141,9 @@ class RunWorkflowRequest extends AbstractModel
 （InputBase64和InputCosUri必选其一）
      * @param string $InputCosUri 任务输入COS地址。
 （InputBase64和InputCosUri必选其一）
-     * @param integer $CacheClearDelay 任务缓存清理时间（小时）。不填表示不清理。
+     * @param integer $CacheClearDelay 任务缓存清理时间（小时）。不填或0表示不清理。
+     * @param string $WorkDir 工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
+     * @param array $VolumeIds 缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
      */
     function __construct()
     {
@@ -182,6 +198,14 @@ class RunWorkflowRequest extends AbstractModel
 
         if (array_key_exists("CacheClearDelay",$param) and $param["CacheClearDelay"] !== null) {
             $this->CacheClearDelay = $param["CacheClearDelay"];
+        }
+
+        if (array_key_exists("WorkDir",$param) and $param["WorkDir"] !== null) {
+            $this->WorkDir = $param["WorkDir"];
+        }
+
+        if (array_key_exists("VolumeIds",$param) and $param["VolumeIds"] !== null) {
+            $this->VolumeIds = $param["VolumeIds"];
         }
     }
 }

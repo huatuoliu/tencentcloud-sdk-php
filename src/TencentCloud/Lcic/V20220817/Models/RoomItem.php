@@ -89,8 +89,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setIsGradingRequiredPostClass(integer $IsGradingRequiredPostClass) 设置开启课后评分。 0：不开启(默认)  1：开启
 注意：此字段可能返回 null，表示取不到有效值。
  * @method integer getRoomType() 获取房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
+注：大班课的布局(layout)只有三分屏
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setRoomType(integer $RoomType) 设置房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
+注：大班课的布局(layout)只有三分屏
 注意：此字段可能返回 null，表示取不到有效值。
  * @method integer getEndDelayTime() 获取拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
 注意：此字段可能返回 null，表示取不到有效值。
@@ -112,6 +114,12 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setRecordBackground(string $RecordBackground) 设置录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getRecordScene() 获取录制自定义场景，仅recordlayout=9的时候此参数有效,数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRecordScene(string $RecordScene) 设置录制自定义场景，仅recordlayout=9的时候此参数有效,数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getRecordLang() 获取录制自定义语言，仅recordlayout=9的时候此参数有效
+ * @method void setRecordLang(string $RecordLang) 设置录制自定义语言，仅recordlayout=9的时候此参数有效
  */
 class RoomItem extends AbstractModel
 {
@@ -215,6 +223,7 @@ class RoomItem extends AbstractModel
 
     /**
      * @var integer 房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
+注：大班课的布局(layout)只有三分屏
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $RoomType;
@@ -248,6 +257,17 @@ class RoomItem extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $RecordBackground;
+
+    /**
+     * @var string 录制自定义场景，仅recordlayout=9的时候此参数有效,数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RecordScene;
+
+    /**
+     * @var string 录制自定义语言，仅recordlayout=9的时候此参数有效
+     */
+    public $RecordLang;
 
     /**
      * @param string $Name 名称
@@ -285,6 +305,7 @@ class RoomItem extends AbstractModel
      * @param integer $IsGradingRequiredPostClass 开启课后评分。 0：不开启(默认)  1：开启
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $RoomType 房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
+注：大班课的布局(layout)只有三分屏
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $EndDelayTime 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
 注意：此字段可能返回 null，表示取不到有效值。
@@ -296,6 +317,9 @@ class RoomItem extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RecordBackground 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
 注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $RecordScene 录制自定义场景，仅recordlayout=9的时候此参数有效,数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $RecordLang 录制自定义语言，仅recordlayout=9的时候此参数有效
      */
     function __construct()
     {
@@ -396,6 +420,14 @@ class RoomItem extends AbstractModel
 
         if (array_key_exists("RecordBackground",$param) and $param["RecordBackground"] !== null) {
             $this->RecordBackground = $param["RecordBackground"];
+        }
+
+        if (array_key_exists("RecordScene",$param) and $param["RecordScene"] !== null) {
+            $this->RecordScene = $param["RecordScene"];
+        }
+
+        if (array_key_exists("RecordLang",$param) and $param["RecordLang"] !== null) {
+            $this->RecordLang = $param["RecordLang"];
         }
     }
 }

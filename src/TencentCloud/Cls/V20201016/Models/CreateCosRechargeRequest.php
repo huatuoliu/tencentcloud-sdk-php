@@ -26,12 +26,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setLogsetId(string $LogsetId) 设置日志集ID
  * @method string getName() 获取投递任务名称
  * @method void setName(string $Name) 设置投递任务名称
- * @method string getBucket() 获取COS存储桶。
-存储桶命名规范：https://cloud.tencent.com/document/product/436/13312
- * @method void setBucket(string $Bucket) 设置COS存储桶。
-存储桶命名规范：https://cloud.tencent.com/document/product/436/13312
- * @method string getBucketRegion() 获取COS存储桶所在地域。地域和访问域名：https://cloud.tencent.com/document/product/436/6224
- * @method void setBucketRegion(string $BucketRegion) 设置COS存储桶所在地域。地域和访问域名：https://cloud.tencent.com/document/product/436/6224
+ * @method string getBucket() 获取COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+ * @method void setBucket(string $Bucket) 设置COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+ * @method string getBucketRegion() 获取COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
+ * @method void setBucketRegion(string $BucketRegion) 设置COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
  * @method string getPrefix() 获取COS文件所在文件夹的前缀
  * @method void setPrefix(string $Prefix) 设置COS文件所在文件夹的前缀
  * @method string getLogType() 获取采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
@@ -42,6 +40,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setCompress(string $Compress) 设置supported: "", "gzip", "lzop", "snappy"; 默认空
  * @method ExtractRuleInfo getExtractRuleInfo() 获取提取规则，如果设置了ExtractRule，则必须设置LogType
  * @method void setExtractRuleInfo(ExtractRuleInfo $ExtractRuleInfo) 设置提取规则，如果设置了ExtractRule，则必须设置LogType
+ * @method integer getTaskType() 获取COS导入任务类型。1：一次性导入任务；2：持续性导入任务。默认为1：一次性导入任务
+ * @method void setTaskType(integer $TaskType) 设置COS导入任务类型。1：一次性导入任务；2：持续性导入任务。默认为1：一次性导入任务
+ * @method array getMetadata() 获取元数据。
+ * @method void setMetadata(array $Metadata) 设置元数据。
  */
 class CreateCosRechargeRequest extends AbstractModel
 {
@@ -61,13 +63,12 @@ class CreateCosRechargeRequest extends AbstractModel
     public $Name;
 
     /**
-     * @var string COS存储桶。
-存储桶命名规范：https://cloud.tencent.com/document/product/436/13312
+     * @var string COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
      */
     public $Bucket;
 
     /**
-     * @var string COS存储桶所在地域。地域和访问域名：https://cloud.tencent.com/document/product/436/6224
+     * @var string COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
      */
     public $BucketRegion;
 
@@ -93,17 +94,28 @@ class CreateCosRechargeRequest extends AbstractModel
     public $ExtractRuleInfo;
 
     /**
+     * @var integer COS导入任务类型。1：一次性导入任务；2：持续性导入任务。默认为1：一次性导入任务
+     */
+    public $TaskType;
+
+    /**
+     * @var array 元数据。
+     */
+    public $Metadata;
+
+    /**
      * @param string $TopicId 日志主题 ID
      * @param string $LogsetId 日志集ID
      * @param string $Name 投递任务名称
-     * @param string $Bucket COS存储桶。
-存储桶命名规范：https://cloud.tencent.com/document/product/436/13312
-     * @param string $BucketRegion COS存储桶所在地域。地域和访问域名：https://cloud.tencent.com/document/product/436/6224
+     * @param string $Bucket COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+     * @param string $BucketRegion COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
      * @param string $Prefix COS文件所在文件夹的前缀
      * @param string $LogType 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
 默认为minimalist_log
      * @param string $Compress supported: "", "gzip", "lzop", "snappy"; 默认空
      * @param ExtractRuleInfo $ExtractRuleInfo 提取规则，如果设置了ExtractRule，则必须设置LogType
+     * @param integer $TaskType COS导入任务类型。1：一次性导入任务；2：持续性导入任务。默认为1：一次性导入任务
+     * @param array $Metadata 元数据。
      */
     function __construct()
     {
@@ -153,6 +165,14 @@ class CreateCosRechargeRequest extends AbstractModel
         if (array_key_exists("ExtractRuleInfo",$param) and $param["ExtractRuleInfo"] !== null) {
             $this->ExtractRuleInfo = new ExtractRuleInfo();
             $this->ExtractRuleInfo->deserialize($param["ExtractRuleInfo"]);
+        }
+
+        if (array_key_exists("TaskType",$param) and $param["TaskType"] !== null) {
+            $this->TaskType = $param["TaskType"];
+        }
+
+        if (array_key_exists("Metadata",$param) and $param["Metadata"] !== null) {
+            $this->Metadata = $param["Metadata"];
         }
     }
 }

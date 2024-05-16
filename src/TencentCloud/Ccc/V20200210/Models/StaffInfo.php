@@ -18,26 +18,28 @@ namespace TencentCloud\Ccc\V20200210\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * 带有技能组优先级的坐席信息
+ * 带有技能组优先级的座席信息
  *
- * @method string getName() 获取坐席名称
+ * @method string getName() 获取座席名称
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setName(string $Name) 设置坐席名称
+ * @method void setName(string $Name) 设置座席名称
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getMail() 获取坐席邮箱
- * @method void setMail(string $Mail) 设置坐席邮箱
- * @method string getPhone() 获取坐席电话号码
+ * @method string getMail() 获取座席邮箱
+ * @method void setMail(string $Mail) 设置座席邮箱
+ * @method string getPhone() 获取座席电话号码
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setPhone(string $Phone) 设置坐席电话号码
+ * @method void setPhone(string $Phone) 设置座席电话号码
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getNick() 获取坐席昵称
+ * @method string getNick() 获取座席昵称
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setNick(string $Nick) 设置坐席昵称
+ * @method void setNick(string $Nick) 设置座席昵称
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getStaffNumber() 获取坐席工号
+ * @method string getStaffNumber() 获取座席工号
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setStaffNumber(string $StaffNumber) 设置坐席工号
+ * @method void setStaffNumber(string $StaffNumber) 设置座席工号
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getRoleId() 获取用户角色id
+ * @method void setRoleId(integer $RoleId) 设置用户角色id
  * @method array getSkillGroupList() 获取所属技能组列表
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setSkillGroupList(array $SkillGroupList) 设置所属技能组列表
@@ -50,33 +52,38 @@ use TencentCloud\Common\AbstractModel;
 class StaffInfo extends AbstractModel
 {
     /**
-     * @var string 坐席名称
+     * @var string 座席名称
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $Name;
 
     /**
-     * @var string 坐席邮箱
+     * @var string 座席邮箱
      */
     public $Mail;
 
     /**
-     * @var string 坐席电话号码
+     * @var string 座席电话号码
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $Phone;
 
     /**
-     * @var string 坐席昵称
+     * @var string 座席昵称
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $Nick;
 
     /**
-     * @var string 坐席工号
+     * @var string 座席工号
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $StaffNumber;
+
+    /**
+     * @var integer 用户角色id
+     */
+    public $RoleId;
 
     /**
      * @var array 所属技能组列表
@@ -91,15 +98,16 @@ class StaffInfo extends AbstractModel
     public $LastModifyTimestamp;
 
     /**
-     * @param string $Name 坐席名称
+     * @param string $Name 座席名称
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $Mail 坐席邮箱
-     * @param string $Phone 坐席电话号码
+     * @param string $Mail 座席邮箱
+     * @param string $Phone 座席电话号码
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $Nick 坐席昵称
+     * @param string $Nick 座席昵称
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $StaffNumber 坐席工号
+     * @param string $StaffNumber 座席工号
 注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $RoleId 用户角色id
      * @param array $SkillGroupList 所属技能组列表
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $LastModifyTimestamp 最后修改时间
@@ -136,6 +144,10 @@ class StaffInfo extends AbstractModel
 
         if (array_key_exists("StaffNumber",$param) and $param["StaffNumber"] !== null) {
             $this->StaffNumber = $param["StaffNumber"];
+        }
+
+        if (array_key_exists("RoleId",$param) and $param["RoleId"] !== null) {
+            $this->RoleId = $param["RoleId"];
         }
 
         if (array_key_exists("SkillGroupList",$param) and $param["SkillGroupList"] !== null) {

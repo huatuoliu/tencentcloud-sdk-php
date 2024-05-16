@@ -22,12 +22,14 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method array getTaskIds() 获取任务id
  * @method void setTaskIds(array $TaskIds) 设置任务id
- * @method integer getTaskType() 获取任务类型
- * @method void setTaskType(integer $TaskType) 设置任务类型
+ * @method integer getTaskType() 获取任务类型，201为实时任务，202为离线任务
+ * @method void setTaskType(integer $TaskType) 设置任务类型，201为实时任务，202为离线任务
  * @method string getProjectId() 获取项目id
  * @method void setProjectId(string $ProjectId) 设置项目id
  * @method string getEvent() 获取事件类型(START, STOP, SUSPEND, SUSPEND_WITHOUT_SP,RESUME, COMMIT, TIMESTAMP)	
  * @method void setEvent(string $Event) 设置事件类型(START, STOP, SUSPEND, SUSPEND_WITHOUT_SP,RESUME, COMMIT, TIMESTAMP)	
+ * @method array getTaskNames() 获取本次批量操作涉及任务，用于审计
+ * @method void setTaskNames(array $TaskNames) 设置本次批量操作涉及任务，用于审计
  */
 class BatchSuspendIntegrationTasksRequest extends AbstractModel
 {
@@ -37,7 +39,7 @@ class BatchSuspendIntegrationTasksRequest extends AbstractModel
     public $TaskIds;
 
     /**
-     * @var integer 任务类型
+     * @var integer 任务类型，201为实时任务，202为离线任务
      */
     public $TaskType;
 
@@ -52,10 +54,16 @@ class BatchSuspendIntegrationTasksRequest extends AbstractModel
     public $Event;
 
     /**
+     * @var array 本次批量操作涉及任务，用于审计
+     */
+    public $TaskNames;
+
+    /**
      * @param array $TaskIds 任务id
-     * @param integer $TaskType 任务类型
+     * @param integer $TaskType 任务类型，201为实时任务，202为离线任务
      * @param string $ProjectId 项目id
      * @param string $Event 事件类型(START, STOP, SUSPEND, SUSPEND_WITHOUT_SP,RESUME, COMMIT, TIMESTAMP)	
+     * @param array $TaskNames 本次批量操作涉及任务，用于审计
      */
     function __construct()
     {
@@ -84,6 +92,10 @@ class BatchSuspendIntegrationTasksRequest extends AbstractModel
 
         if (array_key_exists("Event",$param) and $param["Event"] !== null) {
             $this->Event = $param["Event"];
+        }
+
+        if (array_key_exists("TaskNames",$param) and $param["TaskNames"] !== null) {
+            $this->TaskNames = $param["TaskNames"];
         }
     }
 }

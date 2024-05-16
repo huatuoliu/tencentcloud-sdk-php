@@ -20,10 +20,10 @@ use TencentCloud\Common\AbstractModel;
 /**
  * CreateInstances请求参数结构体
  *
- * @method string getBundleId() 获取套餐ID。可以通过调用 [查询套餐](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
- * @method void setBundleId(string $BundleId) 设置套餐ID。可以通过调用 [查询套餐](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
- * @method string getBlueprintId() 获取镜像ID。可以通过调用 [查询镜像信息](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
- * @method void setBlueprintId(string $BlueprintId) 设置镜像ID。可以通过调用 [查询镜像信息](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
+ * @method string getBundleId() 获取套餐ID。可以通过调用 [DescribeBundles](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
+ * @method void setBundleId(string $BundleId) 设置套餐ID。可以通过调用 [DescribeBundles](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
+ * @method string getBlueprintId() 获取镜像ID。可以通过调用 [DescribeBlueprints](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
+ * @method void setBlueprintId(string $BlueprintId) 设置镜像ID。可以通过调用 [DescribeBlueprints](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
  * @method InstanceChargePrepaid getInstanceChargePrepaid() 获取当前实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
  * @method void setInstanceChargePrepaid(InstanceChargePrepaid $InstanceChargePrepaid) 设置当前实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
  * @method string getInstanceName() 获取实例显示名称。
@@ -64,16 +64,18 @@ false（默认）：发送正常请求，通过检查后直接创建实例
 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。
 如果标签不存在会为您自动创建标签。
 数组最多支持10个元素。
+ * @method Command getInitCommand() 获取创建实例后自动执行的命令。
+ * @method void setInitCommand(Command $InitCommand) 设置创建实例后自动执行的命令。
  */
 class CreateInstancesRequest extends AbstractModel
 {
     /**
-     * @var string 套餐ID。可以通过调用 [查询套餐](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
+     * @var string 套餐ID。可以通过调用 [DescribeBundles](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
      */
     public $BundleId;
 
     /**
-     * @var string 镜像ID。可以通过调用 [查询镜像信息](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
+     * @var string 镜像ID。可以通过调用 [DescribeBlueprints](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
      */
     public $BlueprintId;
 
@@ -142,8 +144,13 @@ false（默认）：发送正常请求，通过检查后直接创建实例
     public $Tags;
 
     /**
-     * @param string $BundleId 套餐ID。可以通过调用 [查询套餐](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
-     * @param string $BlueprintId 镜像ID。可以通过调用 [查询镜像信息](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
+     * @var Command 创建实例后自动执行的命令。
+     */
+    public $InitCommand;
+
+    /**
+     * @param string $BundleId 套餐ID。可以通过调用 [DescribeBundles](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
+     * @param string $BlueprintId 镜像ID。可以通过调用 [DescribeBlueprints](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
      * @param InstanceChargePrepaid $InstanceChargePrepaid 当前实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
      * @param string $InstanceName 实例显示名称。
      * @param integer $InstanceCount 购买实例数量。包年包月实例取值范围：[1，30]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量
@@ -164,6 +171,7 @@ false（默认）：发送正常请求，通过检查后直接创建实例
 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。
 如果标签不存在会为您自动创建标签。
 数组最多支持10个元素。
+     * @param Command $InitCommand 创建实例后自动执行的命令。
      */
     function __construct()
     {
@@ -240,6 +248,11 @@ false（默认）：发送正常请求，通过检查后直接创建实例
                 $obj->deserialize($value);
                 array_push($this->Tags, $obj);
             }
+        }
+
+        if (array_key_exists("InitCommand",$param) and $param["InitCommand"] !== null) {
+            $this->InitCommand = new Command();
+            $this->InitCommand->deserialize($param["InitCommand"]);
         }
     }
 }

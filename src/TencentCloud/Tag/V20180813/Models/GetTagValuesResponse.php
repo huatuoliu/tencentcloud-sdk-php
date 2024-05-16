@@ -20,17 +20,17 @@ use TencentCloud\Common\AbstractModel;
 /**
  * GetTagValues返回参数结构体
  *
- * @method string getPaginationToken() 获取获取的下一页的Token值
- * @method void setPaginationToken(string $PaginationToken) 设置获取的下一页的Token值
+ * @method string getPaginationToken() 获取获取的下一页的Token值，如果当前是最后一页，返回为空
+ * @method void setPaginationToken(string $PaginationToken) 设置获取的下一页的Token值，如果当前是最后一页，返回为空
  * @method array getTags() 获取标签列表。
  * @method void setTags(array $Tags) 设置标签列表。
- * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
- * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+ * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+ * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
 class GetTagValuesResponse extends AbstractModel
 {
     /**
-     * @var string 获取的下一页的Token值
+     * @var string 获取的下一页的Token值，如果当前是最后一页，返回为空
      */
     public $PaginationToken;
 
@@ -40,14 +40,14 @@ class GetTagValuesResponse extends AbstractModel
     public $Tags;
 
     /**
-     * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
     /**
-     * @param string $PaginationToken 获取的下一页的Token值
+     * @param string $PaginationToken 获取的下一页的Token值，如果当前是最后一页，返回为空
      * @param array $Tags 标签列表。
-     * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
     {

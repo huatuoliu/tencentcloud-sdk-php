@@ -208,6 +208,32 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setColumns(array $Columns) 设置表字段信息
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getMetaCrawlType() 获取表采集类型
+TABLE, VIEW, MANAGED_TABLE(Hive管理表), EXTERNAL_TABLE(Hive外部表), VIRTUAL_VIEW(虚拟视图), MATERIALIZED_VIEW(物化视图), LATERAL_VIEW, INDEX_TABLE(索引表), END_SELECT(查询结构), INSTANCE(中间临时表类型(数据血缘)), CDW(CDW表类型)
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setMetaCrawlType(string $MetaCrawlType) 设置表采集类型
+TABLE, VIEW, MANAGED_TABLE(Hive管理表), EXTERNAL_TABLE(Hive外部表), VIRTUAL_VIEW(虚拟视图), MATERIALIZED_VIEW(物化视图), LATERAL_VIEW, INDEX_TABLE(索引表), END_SELECT(查询结构), INSTANCE(中间临时表类型(数据血缘)), CDW(CDW表类型)
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getIsView() 获取是否视图
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsView(boolean $IsView) 设置是否视图
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getLocation() 获取存储位置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setLocation(string $Location) 设置存储位置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getIsPartitionTable() 获取判断是否是分区表1 是 0否
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsPartitionTable(integer $IsPartitionTable) 设置判断是否是分区表1 是 0否
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getPartitionColumns() 获取分区字段 key
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPartitionColumns(array $PartitionColumns) 设置分区字段 key
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getPartitionExpireDays() 获取生命周期-分区保留天数【分区保留策略时有效】
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPartitionExpireDays(integer $PartitionExpireDays) 设置生命周期-分区保留天数【分区保留策略时有效】
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class TableMeta extends AbstractModel
 {
@@ -494,6 +520,43 @@ class TableMeta extends AbstractModel
     public $Columns;
 
     /**
+     * @var string 表采集类型
+TABLE, VIEW, MANAGED_TABLE(Hive管理表), EXTERNAL_TABLE(Hive外部表), VIRTUAL_VIEW(虚拟视图), MATERIALIZED_VIEW(物化视图), LATERAL_VIEW, INDEX_TABLE(索引表), END_SELECT(查询结构), INSTANCE(中间临时表类型(数据血缘)), CDW(CDW表类型)
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $MetaCrawlType;
+
+    /**
+     * @var boolean 是否视图
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsView;
+
+    /**
+     * @var string 存储位置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Location;
+
+    /**
+     * @var integer 判断是否是分区表1 是 0否
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsPartitionTable;
+
+    /**
+     * @var array 分区字段 key
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PartitionColumns;
+
+    /**
+     * @var integer 生命周期-分区保留天数【分区保留策略时有效】
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PartitionExpireDays;
+
+    /**
      * @param string $TableId 表的全局唯一ID
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $TableName 表名称
@@ -587,6 +650,19 @@ class TableMeta extends AbstractModel
      * @param string $DataSourceCategory 系统源-CLUSTER, DB-自定义源
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $Columns 表字段信息
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $MetaCrawlType 表采集类型
+TABLE, VIEW, MANAGED_TABLE(Hive管理表), EXTERNAL_TABLE(Hive外部表), VIRTUAL_VIEW(虚拟视图), MATERIALIZED_VIEW(物化视图), LATERAL_VIEW, INDEX_TABLE(索引表), END_SELECT(查询结构), INSTANCE(中间临时表类型(数据血缘)), CDW(CDW表类型)
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $IsView 是否视图
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Location 存储位置
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $IsPartitionTable 判断是否是分区表1 是 0否
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $PartitionColumns 分区字段 key
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $PartitionExpireDays 生命周期-分区保留天数【分区保留策略时有效】
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -795,6 +871,30 @@ class TableMeta extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->Columns, $obj);
             }
+        }
+
+        if (array_key_exists("MetaCrawlType",$param) and $param["MetaCrawlType"] !== null) {
+            $this->MetaCrawlType = $param["MetaCrawlType"];
+        }
+
+        if (array_key_exists("IsView",$param) and $param["IsView"] !== null) {
+            $this->IsView = $param["IsView"];
+        }
+
+        if (array_key_exists("Location",$param) and $param["Location"] !== null) {
+            $this->Location = $param["Location"];
+        }
+
+        if (array_key_exists("IsPartitionTable",$param) and $param["IsPartitionTable"] !== null) {
+            $this->IsPartitionTable = $param["IsPartitionTable"];
+        }
+
+        if (array_key_exists("PartitionColumns",$param) and $param["PartitionColumns"] !== null) {
+            $this->PartitionColumns = $param["PartitionColumns"];
+        }
+
+        if (array_key_exists("PartitionExpireDays",$param) and $param["PartitionExpireDays"] !== null) {
+            $this->PartitionExpireDays = $param["PartitionExpireDays"];
         }
     }
 }

@@ -192,6 +192,14 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setMonitorStatus(integer $MonitorStatus) 设置监控是否开启.0false,1true
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getTriggerCondition() 获取触发条件
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setTriggerCondition(string $TriggerCondition) 设置触发条件
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getDsEnvType() 获取0或者未返回或者null：未定义，1：生产，2：开发
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDsEnvType(integer $DsEnvType) 设置0或者未返回或者null：未定义，1：生产，2：开发
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Rule extends AbstractModel
 {
@@ -454,6 +462,18 @@ class Rule extends AbstractModel
     public $MonitorStatus;
 
     /**
+     * @var string 触发条件
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $TriggerCondition;
+
+    /**
+     * @var integer 0或者未返回或者null：未定义，1：生产，2：开发
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $DsEnvType;
+
+    /**
      * @param integer $RuleId 规则ID
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $RuleGroupId 规则组ID
@@ -539,6 +559,10 @@ class Rule extends AbstractModel
      * @param string $DatabaseId 数据库 id
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $MonitorStatus 监控是否开启.0false,1true
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $TriggerCondition 触发条件
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $DsEnvType 0或者未返回或者null：未定义，1：生产，2：开发
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -728,6 +752,14 @@ class Rule extends AbstractModel
 
         if (array_key_exists("MonitorStatus",$param) and $param["MonitorStatus"] !== null) {
             $this->MonitorStatus = $param["MonitorStatus"];
+        }
+
+        if (array_key_exists("TriggerCondition",$param) and $param["TriggerCondition"] !== null) {
+            $this->TriggerCondition = $param["TriggerCondition"];
+        }
+
+        if (array_key_exists("DsEnvType",$param) and $param["DsEnvType"] !== null) {
+            $this->DsEnvType = $param["DsEnvType"];
         }
     }
 }

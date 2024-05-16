@@ -56,8 +56,22 @@ use TencentCloud\Common\AbstractModel;
  * @method void setProvinsi(string $Provinsi) 设置省份，Scene为V2时支持识别
  * @method string getKota() 获取城市，Scene为V2时支持识别
  * @method void setKota(string $Kota) 设置城市，Scene为V2时支持识别
- * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
- * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+ * @method array getWarnCardInfos() 获取告警码
+-9101 证件边框不完整告警
+-9102 证件复印件告警
+-9103 证件翻拍告警
+-9107 证件反光告警
+-9108 证件模糊告警
+-9109 告警能力未开通
+ * @method void setWarnCardInfos(array $WarnCardInfos) 设置告警码
+-9101 证件边框不完整告警
+-9102 证件复印件告警
+-9103 证件翻拍告警
+-9107 证件反光告警
+-9108 证件模糊告警
+-9109 告警能力未开通
+ * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+ * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
 class RecognizeIndonesiaIDCardOCRResponse extends AbstractModel
 {
@@ -152,7 +166,18 @@ class RecognizeIndonesiaIDCardOCRResponse extends AbstractModel
     public $Kota;
 
     /**
-     * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @var array 告警码
+-9101 证件边框不完整告警
+-9102 证件复印件告警
+-9103 证件翻拍告警
+-9107 证件反光告警
+-9108 证件模糊告警
+-9109 告警能力未开通
+     */
+    public $WarnCardInfos;
+
+    /**
+     * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
@@ -175,7 +200,14 @@ class RecognizeIndonesiaIDCardOCRResponse extends AbstractModel
      * @param string $Photo 人像截图
      * @param string $Provinsi 省份，Scene为V2时支持识别
      * @param string $Kota 城市，Scene为V2时支持识别
-     * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @param array $WarnCardInfos 告警码
+-9101 证件边框不完整告警
+-9102 证件复印件告警
+-9103 证件翻拍告警
+-9107 证件反光告警
+-9108 证件模糊告警
+-9109 告警能力未开通
+     * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
     {
@@ -260,6 +292,10 @@ class RecognizeIndonesiaIDCardOCRResponse extends AbstractModel
 
         if (array_key_exists("Kota",$param) and $param["Kota"] !== null) {
             $this->Kota = $param["Kota"];
+        }
+
+        if (array_key_exists("WarnCardInfos",$param) and $param["WarnCardInfos"] !== null) {
+            $this->WarnCardInfos = $param["WarnCardInfos"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

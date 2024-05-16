@@ -78,6 +78,10 @@ FAILED：表示操作失败
 注意：此字段可能返回 空值，表示取不到有效值。
  * @method void setLatestOperationRequestId(string $LatestOperationRequestId) 设置实例最新操作的唯一请求 ID。 
 注意：此字段可能返回 空值，表示取不到有效值。
+ * @method string getLatestOperationStartedTime() 获取实例最新操作的开始时间。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setLatestOperationStartedTime(string $LatestOperationStartedTime) 设置实例最新操作的开始时间。
+注意：此字段可能返回 null，表示取不到有效值。
  * @method string getIsolatedTime() 获取隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
 格式为： YYYY-MM-DDThh:mm:ssZ。
 注意：此字段可能返回 null，表示取不到有效值。
@@ -110,6 +114,8 @@ FAILED：表示操作失败
 <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
  * @method void setInstanceRestrictState(string $InstanceRestrictState) 设置实例封禁状态。取值范围：
 <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
+ * @method string getInitInvocationId() 获取创建实例后自动执行TAT命令的调用ID。
+ * @method void setInitInvocationId(string $InitInvocationId) 设置创建实例后自动执行TAT命令的调用ID。
  */
 class Instance extends AbstractModel
 {
@@ -215,6 +221,12 @@ FAILED：表示操作失败
     public $LatestOperationRequestId;
 
     /**
+     * @var string 实例最新操作的开始时间。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $LatestOperationStartedTime;
+
+    /**
      * @var string 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
 格式为： YYYY-MM-DDThh:mm:ssZ。
 注意：此字段可能返回 null，表示取不到有效值。
@@ -267,6 +279,11 @@ FAILED：表示操作失败
     public $InstanceRestrictState;
 
     /**
+     * @var string 创建实例后自动执行TAT命令的调用ID。
+     */
+    public $InitInvocationId;
+
+    /**
      * @param string $InstanceId 实例 ID。
      * @param string $BundleId 套餐 ID。
      * @param string $BlueprintId 镜像 ID。
@@ -296,6 +313,8 @@ FAILED：表示操作失败
 注意：此字段可能返回 空值，表示取不到有效值。
      * @param string $LatestOperationRequestId 实例最新操作的唯一请求 ID。 
 注意：此字段可能返回 空值，表示取不到有效值。
+     * @param string $LatestOperationStartedTime 实例最新操作的开始时间。
+注意：此字段可能返回 null，表示取不到有效值。
      * @param string $IsolatedTime 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
 格式为： YYYY-MM-DDThh:mm:ssZ。
 注意：此字段可能返回 null，表示取不到有效值。
@@ -312,6 +331,7 @@ FAILED：表示操作失败
      * @param array $Tags 实例绑定的标签列表。
      * @param string $InstanceRestrictState 实例封禁状态。取值范围：
 <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
+     * @param string $InitInvocationId 创建实例后自动执行TAT命令的调用ID。
      */
     function __construct()
     {
@@ -401,6 +421,10 @@ FAILED：表示操作失败
             $this->LatestOperationRequestId = $param["LatestOperationRequestId"];
         }
 
+        if (array_key_exists("LatestOperationStartedTime",$param) and $param["LatestOperationStartedTime"] !== null) {
+            $this->LatestOperationStartedTime = $param["LatestOperationStartedTime"];
+        }
+
         if (array_key_exists("IsolatedTime",$param) and $param["IsolatedTime"] !== null) {
             $this->IsolatedTime = $param["IsolatedTime"];
         }
@@ -440,6 +464,10 @@ FAILED：表示操作失败
 
         if (array_key_exists("InstanceRestrictState",$param) and $param["InstanceRestrictState"] !== null) {
             $this->InstanceRestrictState = $param["InstanceRestrictState"];
+        }
+
+        if (array_key_exists("InitInvocationId",$param) and $param["InitInvocationId"] !== null) {
+            $this->InitInvocationId = $param["InitInvocationId"];
         }
     }
 }

@@ -22,12 +22,16 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method array getTaskIds() 获取任务id
  * @method void setTaskIds(array $TaskIds) 设置任务id
- * @method integer getTaskType() 获取任务类型
- * @method void setTaskType(integer $TaskType) 设置任务类型
+ * @method integer getTaskType() 获取任务类型，201为实时任务，202为离线任务
+ * @method void setTaskType(integer $TaskType) 设置任务类型，201为实时任务，202为离线任务
  * @method string getProjectId() 获取项目id
  * @method void setProjectId(string $ProjectId) 设置项目id
  * @method integer getDeleteKFFlag() 获取是否删除开发态任务。默认不删除开发态，为 0 不删除 , 为 1 删除
  * @method void setDeleteKFFlag(integer $DeleteKFFlag) 设置是否删除开发态任务。默认不删除开发态，为 0 不删除 , 为 1 删除
+ * @method string getName() 获取操作名称
+ * @method void setName(string $Name) 设置操作名称
+ * @method array getTaskNames() 获取本次批量操作涉及任务，用于审计
+ * @method void setTaskNames(array $TaskNames) 设置本次批量操作涉及任务，用于审计
  */
 class BatchDeleteIntegrationTasksRequest extends AbstractModel
 {
@@ -37,7 +41,7 @@ class BatchDeleteIntegrationTasksRequest extends AbstractModel
     public $TaskIds;
 
     /**
-     * @var integer 任务类型
+     * @var integer 任务类型，201为实时任务，202为离线任务
      */
     public $TaskType;
 
@@ -52,10 +56,22 @@ class BatchDeleteIntegrationTasksRequest extends AbstractModel
     public $DeleteKFFlag;
 
     /**
+     * @var string 操作名称
+     */
+    public $Name;
+
+    /**
+     * @var array 本次批量操作涉及任务，用于审计
+     */
+    public $TaskNames;
+
+    /**
      * @param array $TaskIds 任务id
-     * @param integer $TaskType 任务类型
+     * @param integer $TaskType 任务类型，201为实时任务，202为离线任务
      * @param string $ProjectId 项目id
      * @param integer $DeleteKFFlag 是否删除开发态任务。默认不删除开发态，为 0 不删除 , 为 1 删除
+     * @param string $Name 操作名称
+     * @param array $TaskNames 本次批量操作涉及任务，用于审计
      */
     function __construct()
     {
@@ -84,6 +100,14 @@ class BatchDeleteIntegrationTasksRequest extends AbstractModel
 
         if (array_key_exists("DeleteKFFlag",$param) and $param["DeleteKFFlag"] !== null) {
             $this->DeleteKFFlag = $param["DeleteKFFlag"];
+        }
+
+        if (array_key_exists("Name",$param) and $param["Name"] !== null) {
+            $this->Name = $param["Name"];
+        }
+
+        if (array_key_exists("TaskNames",$param) and $param["TaskNames"] !== null) {
+            $this->TaskNames = $param["TaskNames"];
         }
     }
 }

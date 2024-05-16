@@ -20,8 +20,8 @@ use TencentCloud\Common\AbstractModel;
 /**
  * CreateJob请求参数结构体
  *
- * @method string getName() 获取作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
- * @method void setName(string $Name) 设置作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
+ * @method string getName() 获取作业名称，允许输入长度小于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
+ * @method void setName(string $Name) 设置作业名称，允许输入长度小于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
  * @method integer getJobType() 获取作业的类型，1 表示 SQL 作业，2 表示 JAR 作业
  * @method void setJobType(integer $JobType) 设置作业的类型，1 表示 SQL 作业，2 表示 JAR 作业
  * @method integer getClusterType() 获取集群的类型，1 表示共享集群，2 表示独享集群
@@ -40,11 +40,13 @@ use TencentCloud\Common\AbstractModel;
  * @method void setWorkSpaceId(string $WorkSpaceId) 设置工作空间 SerialId
  * @method array getTags() 获取作业标签
  * @method void setTags(array $Tags) 设置作业标签
+ * @method string getDescription() 获取作业描述
+ * @method void setDescription(string $Description) 设置作业描述
  */
 class CreateJobRequest extends AbstractModel
 {
     /**
-     * @var string 作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
+     * @var string 作业名称，允许输入长度小于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
      */
     public $Name;
 
@@ -94,7 +96,12 @@ class CreateJobRequest extends AbstractModel
     public $Tags;
 
     /**
-     * @param string $Name 作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
+     * @var string 作业描述
+     */
+    public $Description;
+
+    /**
+     * @param string $Name 作业名称，允许输入长度小于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
      * @param integer $JobType 作业的类型，1 表示 SQL 作业，2 表示 JAR 作业
      * @param integer $ClusterType 集群的类型，1 表示共享集群，2 表示独享集群
      * @param string $ClusterId 当 ClusterType=2 时，必选，用来指定该作业提交的独享集群 ID
@@ -104,6 +111,7 @@ class CreateJobRequest extends AbstractModel
      * @param string $FlinkVersion 作业运行的Flink版本
      * @param string $WorkSpaceId 工作空间 SerialId
      * @param array $Tags 作业标签
+     * @param string $Description 作业描述
      */
     function __construct()
     {
@@ -161,6 +169,10 @@ class CreateJobRequest extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->Tags, $obj);
             }
+        }
+
+        if (array_key_exists("Description",$param) and $param["Description"] !== null) {
+            $this->Description = $param["Description"];
         }
     }
 }

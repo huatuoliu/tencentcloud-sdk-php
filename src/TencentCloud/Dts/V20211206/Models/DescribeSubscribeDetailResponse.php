@@ -88,9 +88,13 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setKafkaConfig(SubscribeKafkaConfig $KafkaConfig) 设置kafka配置信息
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getAccessType() 获取源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+ * @method string getKafkaVersion() 获取订阅内置kafka的版本信息
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setAccessType(string $AccessType) 设置源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+ * @method void setKafkaVersion(string $KafkaVersion) 设置订阅内置kafka的版本信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getAccessType() 获取源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAccessType(string $AccessType) 设置源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
 注意：此字段可能返回 null，表示取不到有效值。
  * @method array getEndpoints() 获取接入类型信息
 注意：此字段可能返回 null，表示取不到有效值。
@@ -116,8 +120,8 @@ mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
 mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。
 mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
- * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+ * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+ * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
 class DescribeSubscribeDetailResponse extends AbstractModel
 {
@@ -240,7 +244,13 @@ class DescribeSubscribeDetailResponse extends AbstractModel
     public $KafkaConfig;
 
     /**
-     * @var string 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+     * @var string 订阅内置kafka的版本信息
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $KafkaVersion;
+
+    /**
+     * @var string 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $AccessType;
@@ -278,7 +288,7 @@ mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
     public $ExtraAttr;
 
     /**
-     * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
@@ -317,7 +327,9 @@ mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param SubscribeKafkaConfig $KafkaConfig kafka配置信息
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $AccessType 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+     * @param string $KafkaVersion 订阅内置kafka的版本信息
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $AccessType 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $Endpoints 接入类型信息
 注意：此字段可能返回 null，表示取不到有效值。
@@ -331,7 +343,7 @@ mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
 mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。
 mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+     * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
     {
@@ -434,6 +446,10 @@ mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
         if (array_key_exists("KafkaConfig",$param) and $param["KafkaConfig"] !== null) {
             $this->KafkaConfig = new SubscribeKafkaConfig();
             $this->KafkaConfig->deserialize($param["KafkaConfig"]);
+        }
+
+        if (array_key_exists("KafkaVersion",$param) and $param["KafkaVersion"] !== null) {
+            $this->KafkaVersion = $param["KafkaVersion"];
         }
 
         if (array_key_exists("AccessType",$param) and $param["AccessType"] !== null) {

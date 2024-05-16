@@ -27,21 +27,23 @@ use TencentCloud\Common\AbstractModel;
  * @method integer getEndStatus() 获取结束状态
 0 异常结束
 1 正常结束
-3 无坐席在线
-17 坐席放弃接听
+3 无座席在线
+17 座席放弃接听
 100 黑名单
-101 坐席手动转接
+101 座席手动转接
 102 IVR阶段放弃
 108 用户超时自动结束
+109 用户主动结束
  * @method void setEndStatus(integer $EndStatus) 设置结束状态
 0 异常结束
 1 正常结束
-3 无坐席在线
-17 坐席放弃接听
+3 无座席在线
+17 座席放弃接听
 100 黑名单
-101 坐席手动转接
+101 座席手动转接
 102 IVR阶段放弃
 108 用户超时自动结束
+109 用户主动结束
  * @method string getNickname() 获取用户昵称
  * @method void setNickname(string $Nickname) 设置用户昵称
  * @method integer getType() 获取服务类型 1为全媒体，2为文本客服
@@ -83,12 +85,13 @@ class IMCdrInfo extends AbstractModel
      * @var integer 结束状态
 0 异常结束
 1 正常结束
-3 无坐席在线
-17 坐席放弃接听
+3 无座席在线
+17 座席放弃接听
 100 黑名单
-101 坐席手动转接
+101 座席手动转接
 102 IVR阶段放弃
 108 用户超时自动结束
+109 用户主动结束
      */
     public $EndStatus;
 
@@ -142,12 +145,13 @@ class IMCdrInfo extends AbstractModel
      * @param integer $EndStatus 结束状态
 0 异常结束
 1 正常结束
-3 无坐席在线
-17 坐席放弃接听
+3 无座席在线
+17 座席放弃接听
 100 黑名单
-101 坐席手动转接
+101 座席手动转接
 102 IVR阶段放弃
 108 用户超时自动结束
+109 用户主动结束
      * @param string $Nickname 用户昵称
      * @param integer $Type 服务类型 1为全媒体，2为文本客服
      * @param string $StaffId 客服ID

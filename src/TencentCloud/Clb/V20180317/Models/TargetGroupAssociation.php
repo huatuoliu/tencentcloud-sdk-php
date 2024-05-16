@@ -24,10 +24,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setLoadBalancerId(string $LoadBalancerId) 设置负载均衡ID
  * @method string getTargetGroupId() 获取目标组ID
  * @method void setTargetGroupId(string $TargetGroupId) 设置目标组ID
- * @method string getListenerId() 获取监听器ID
- * @method void setListenerId(string $ListenerId) 设置监听器ID
+ * @method string getListenerId() 获取监听器ID。访问AssociateTargetGroups和DisassociateTargetGroups接口时必传此参数。
+ * @method void setListenerId(string $ListenerId) 设置监听器ID。访问AssociateTargetGroups和DisassociateTargetGroups接口时必传此参数。
  * @method string getLocationId() 获取转发规则ID
  * @method void setLocationId(string $LocationId) 设置转发规则ID
+ * @method integer getWeight() 获取目标组权重，范围[0, 100]。仅绑定v2目标组时生效，如果不存在，则默认为10。
+ * @method void setWeight(integer $Weight) 设置目标组权重，范围[0, 100]。仅绑定v2目标组时生效，如果不存在，则默认为10。
  */
 class TargetGroupAssociation extends AbstractModel
 {
@@ -42,7 +44,7 @@ class TargetGroupAssociation extends AbstractModel
     public $TargetGroupId;
 
     /**
-     * @var string 监听器ID
+     * @var string 监听器ID。访问AssociateTargetGroups和DisassociateTargetGroups接口时必传此参数。
      */
     public $ListenerId;
 
@@ -52,10 +54,16 @@ class TargetGroupAssociation extends AbstractModel
     public $LocationId;
 
     /**
+     * @var integer 目标组权重，范围[0, 100]。仅绑定v2目标组时生效，如果不存在，则默认为10。
+     */
+    public $Weight;
+
+    /**
      * @param string $LoadBalancerId 负载均衡ID
      * @param string $TargetGroupId 目标组ID
-     * @param string $ListenerId 监听器ID
+     * @param string $ListenerId 监听器ID。访问AssociateTargetGroups和DisassociateTargetGroups接口时必传此参数。
      * @param string $LocationId 转发规则ID
+     * @param integer $Weight 目标组权重，范围[0, 100]。仅绑定v2目标组时生效，如果不存在，则默认为10。
      */
     function __construct()
     {
@@ -84,6 +92,10 @@ class TargetGroupAssociation extends AbstractModel
 
         if (array_key_exists("LocationId",$param) and $param["LocationId"] !== null) {
             $this->LocationId = $param["LocationId"];
+        }
+
+        if (array_key_exists("Weight",$param) and $param["Weight"] !== null) {
+            $this->Weight = $param["Weight"];
         }
     }
 }
