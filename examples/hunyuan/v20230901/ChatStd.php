@@ -4,7 +4,7 @@ require_once __DIR__.'/../../../vendor/autoload.php';
 use TencentCloud\Hunyuan\V20230901\HunyuanClient;
 // 导入要请求接口对应的Request类
 use TencentCloud\Hunyuan\V20230901\Models\ChatStdRequest;
-
+use TencentCloud\Hunyuan\V20230901\Models\Message;
 use TencentCloud\Common\Exception\TencentCloudSDKException;
 use TencentCloud\Common\Credential;
 // 导入可选配置类
