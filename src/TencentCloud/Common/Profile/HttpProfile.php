@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2017-2018 THL A29 Limited, a Tencent company. All Rights Reserved.
+ * Copyright (c) 2017 Tencent. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,6 +87,11 @@ class HttpProfile
     private $keepAlive;
 
     /**
+     * @var array HTTP请求头
+     */
+    private $headers;
+
+    /**
      * HttpProfile constructor.
      * @param string $protocol  请求协议
      * @param string $endpoint  请求接入点域名(xx.[region.]tencentcloudapi.com)
@@ -101,6 +106,7 @@ class HttpProfile
         $this->protocol = $protocol ? $protocol : HttpProfile::$REQ_HTTPS;
         $this->rootDomain = "tencentcloudapi.com";
         $this->keepAlive = false;
+        $this->headers = [];
     }
 
     /**
@@ -145,6 +151,53 @@ class HttpProfile
     public function setProxy($proxy)
     {
         $this->proxy = $proxy;
+    }
+
+    /**
+     * 设置HTTP请求头
+     * @param array $headers HTTP请求头数组，格式为['Header-Name' => 'value']
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
+    }
+
+    /**
+     * 设置单个HTTP请求头
+     * @param string $name 请求头名称
+     * @param string $value 请求头值
+     */
+    public function setHeader($name, $value)
+    {
+        $this->headers[$name] = $value;
+    }
+
+    /**
+     * 获取HTTP请求头
+     * @return array HTTP请求头数组
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * 清空HTTP请求头
+     */
+    public function clearHeaders()
+    {
+        $this->headers = [];
+    }
+
+    /**
+     * 移除指定的HTTP请求头
+     * @param string $name 要移除的请求头名称
+     */
+    public function removeHeader($name)
+    {
+        if (isset($this->headers[$name])) {
+            unset($this->headers[$name]);
+        }
     }
 
     /**

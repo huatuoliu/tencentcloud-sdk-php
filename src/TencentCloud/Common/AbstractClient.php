@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2017-2018 THL A29 Limited, a Tencent company. All Rights Reserved.
+ * Copyright (c) 2017 Tencent. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ abstract class AbstractClient
     /**
      * @var string SDK版本
      */
-    public static $SDK_VERSION = "SDK_PHP_3.0.1411";
+    public static $SDK_VERSION = "SDK_PHP_3.0.1480";
 
     /**
      * @var integer http响应码200
@@ -50,9 +50,9 @@ abstract class AbstractClient
      * @var Credential 认证类实例，保存认证相关字段
      */
     private $credential;
-    
+
     private $sseResponseCallbackFunc;
-    
+
     /**
      * @var ClientProfile 会话配置信息类
      */
@@ -140,7 +140,7 @@ abstract class AbstractClient
     {
         return $this->region;
     }
-    
+
     /**
      * 设置sse
      * @param string $funcName sse响应回调函数名
@@ -149,7 +149,7 @@ abstract class AbstractClient
     {
         $this->sseResponseCallbackFunc = $funcName;
     }
-    
+
     /**
      * 设置认证信息实例
      * @param Credential $credential 认证信息实例
@@ -238,7 +238,7 @@ abstract class AbstractClient
             }
         }
     }
-    
+
     /**
      * @param string $action
      * @param array  $headers
@@ -266,7 +266,7 @@ abstract class AbstractClient
             $contentType = $responseData->getHeaderLine('Content-Type');
             if ($contentType === 'text/event-stream') {
                 $body = $responseData->getBody();
-                $buffer = '';                
+                $buffer = '';
                 if (isset($callback) && is_callable($callback)) {
                     while (!$body->eof()) {
                         $buffer .= $body->read(1024);
@@ -274,7 +274,7 @@ abstract class AbstractClient
                         while ($delimiterPosition !== false) {
                             $chunk = substr($buffer, 0, $delimiterPosition + 2);
                             $buffer = substr($buffer, $delimiterPosition + 2);
-                            
+
                             $callback($chunk);
                             $delimiterPosition = strpos($buffer, "\n\n");
                         }
@@ -292,9 +292,9 @@ abstract class AbstractClient
                 $resp = json_decode($responseData->getBody(), true)["Response"];
                 if (array_key_exists("Error", $resp)) {
                     throw new TencentCloudSDKException($resp["Error"]["Code"], $resp["Error"]["Message"], $resp["RequestId"]);
-                }                
+                }
                 return $resp;
-            }            
+            }
 
         } catch (\Exception $e) {
             if (!($e instanceof TencentCloudSDKException)) {
@@ -304,7 +304,7 @@ abstract class AbstractClient
             }
         }
     }
-    
+
     /**
      * @param string $action  方法名
      * @param array  $headers  自定义headers
@@ -351,11 +351,11 @@ abstract class AbstractClient
             $method = $this->getPrivateMethod($request, "arrayMerge");
             $serializeRequest = $method->invoke($request, $serializeRequest);
             $responseData = $this->getResponseData($action, $request, $options);
-            
+
             if ($responseData->getStatusCode() !== AbstractClient::$HTTP_RSP_OK) {
                 throw new TencentCloudSDKException($responseData->getReasonPhrase(), $responseData->getBody());
             }
-            
+
             $contentType = $responseData->getHeaderLine('Content-Type');
             if ($contentType === 'text/event-stream') {
                 return $this->handleEventStreamResponse($responseData);
@@ -390,7 +390,8 @@ abstract class AbstractClient
                     $responseData = $this->doRequest($action, $serializeRequest);
                     break;
                 case ClientProfile::$SIGN_TC3_SHA256:
-                    $responseData = $this->doRequestWithTC3($action, $request, $options, array(), "");
+                    $headers = $this->profile->getHttpProfile()->getHeaders();
+                    $responseData = $this->doRequestWithTC3($action, $request, $options, $headers, "");
                     break;
                 default:
                     throw new TencentCloudSDKException("ClientError", "Invalid sign method");
@@ -399,7 +400,7 @@ abstract class AbstractClient
             if ($responseData->getStatusCode() !== AbstractClient::$HTTP_RSP_OK) {
                 throw new TencentCloudSDKException($responseData->getReasonPhrase(), $responseData->getBody());
             }
-            
+
             $contentType = $responseData->getHeaderLine('Content-Type');
             if ($contentType === 'text/event-stream') {
                 return $this->handleEventStreamResponse($responseData);
@@ -412,8 +413,8 @@ abstract class AbstractClient
                 $this->circuitBreaker->afterRequests($generation, True);
                 return $this->returnResponse($action, $tmpResp);
             }
-            
-            
+
+
         } catch (\Exception $e) {
             $this->circuitBreaker->afterRequests($generation, False);
             if (!($e instanceof TencentCloudSDKException)) {
@@ -423,7 +424,7 @@ abstract class AbstractClient
             }
         }
     }
-    
+
     private function getResponseData($action, $request, $options)
     {
         switch ($this->profile->getSignMethod()) {
@@ -431,18 +432,19 @@ abstract class AbstractClient
             case ClientProfile::$SIGN_HMAC_SHA256:
                 return $this->doRequest($action, $request->serialize());
             case ClientProfile::$SIGN_TC3_SHA256:
-                return $this->doRequestWithTC3($action, $request, $options, array(), "");
+                $headers = $this->profile->getHttpProfile()->getHeaders();
+                return $this->doRequestWithTC3($action, $request, $options, $headers, "");
             default:
                 throw new TencentCloudSDKException("ClientError", "Invalid sign method");
         }
     }
-    
+
     private function handleEventStreamResponse($responseData)
     {
         $body = $responseData->getBody();
         $buffer = '';
         $temp_func = $this->sseResponseCallbackFunc;
-        
+
         if (isset($temp_func) && is_callable($temp_func)) {
             while (!$body->eof()) {
                 $buffer .= $body->read(1024);
@@ -450,7 +452,7 @@ abstract class AbstractClient
                 while ($delimiterPosition !== false) {
                     $chunk = substr($buffer, 0, $delimiterPosition + 2);
                     $buffer = substr($buffer, $delimiterPosition + 2);
-                    
+
                     $temp_func($chunk);
                     $delimiterPosition = strpos($buffer, "\n\n");
                 }
@@ -465,19 +467,19 @@ abstract class AbstractClient
             return $buffer;
         }
     }
-    
+
     private function handleJsonResponse($action, $responseData)
     {
         $tmpResp = json_decode($responseData->getBody(), true)["Response"];
         if (array_key_exists("Error", $tmpResp)) {
             throw new TencentCloudSDKException($tmpResp["Error"]["Code"], $tmpResp["Error"]["Message"], $tmpResp["RequestId"]);
         }
-        
+
         return $this->returnResponse($action, $tmpResp);
     }
-    
-    
-    
+
+
+
     private function doRequest($action, $request)
     {
         switch ($this->profile->getHttpProfile()->getReqMethod()) {
